@@ -60,15 +60,15 @@ func part1() {
 				n := [][2]int{}
 				pp := 0
 				for _, d := range dirs {
-					ii, jj := c[0]+d[0], c[1]+d[1]
-					if out(g, ii, jj) {
+					i, j := c[0]+d[0], c[1]+d[1]
+					if out(g, i, j) {
 						continue
 					}
-					if g[ii][jj][0] == v[0] {
+					if g[i][j][0] == v[0] {
 						pp += 1
-						if g[ii][jj][1] == 0 {
-							g[ii][jj][1] = 1
-							n = append(n, [2]int{ii, jj})
+						if g[i][j][1] == 0 {
+							g[i][j][1] = 1
+							n = append(n, [2]int{i, j})
 						}
 
 					}
