@@ -16,8 +16,8 @@ def part1(data: str) -> None:
     count = 0
     pos = POS_START
     for line in data.splitlines():
-        pos += int(line[1:]) * (1 if line[0] == "R" else -1)
-        pos %= MOD_WRAP
+        delta = int(line[1:]) * (1 if line[0] == "R" else -1)
+        pos = (pos + delta) % MOD_WRAP
         if pos == 0:
             count += 1
 
@@ -28,11 +28,12 @@ def part2(data: str) -> None:
     count = 0
     pos = POS_START
     for line in data.splitlines():
-        for _ in range(int(line[1:])):
-            pos += 1 if line[0] == "R" else -1
-            pos %= MOD_WRAP
-            if pos == 0:
-                count += 1
+        wraps, delta = divmod(int(line[1:]), MOD_WRAP)
+        count += wraps
+        delta *= 1 if line[0] == "R" else -1
+        if pos + delta >= MOD_WRAP or (pos > 0 and pos + delta <= 0):
+            count += 1
+        pos = (pos + delta) % MOD_WRAP
 
     print("Part 2: ", count)
 
