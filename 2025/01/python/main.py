@@ -15,8 +15,8 @@ def read_file(path: str) -> str:
 def part1(data: str) -> None:
     count = 0
     pos = POS_START
-    for line in data.replace("L", "-").replace("R", "").splitlines():
-        pos += int(line)
+    for line in data.splitlines():
+        pos += int(line[1:]) * (1 if line[0] == "R" else -1)
         pos %= MOD_WRAP
         if pos == 0:
             count += 1
