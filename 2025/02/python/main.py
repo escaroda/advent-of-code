@@ -40,7 +40,7 @@ def part1(data: str) -> None:
             if invalid1(n):
                 res += n
 
-    print("Part 1: ", res)
+    print("Part 1:", res)
 
 
 def invalid2(n: int) -> bool:
@@ -63,7 +63,7 @@ def part2(data: str) -> None:
             if invalid2(n):
                 res += n
 
-    print("Part 2: ", res)
+    print("Part 2:", res)
 
 
 def main():

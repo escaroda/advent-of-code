@@ -21,7 +21,7 @@ def part1(data: str) -> None:
         if pos == 0:
             count += 1
 
-    print("Part 1: ", count)
+    print("Part 1:", count)
 
 
 def part2(data: str) -> None:
@@ -35,7 +35,7 @@ def part2(data: str) -> None:
             count += 1
         pos = (pos + delta) % MOD_WRAP
 
-    print("Part 2: ", count)
+    print("Part 2:", count)
 
 
 def main():
