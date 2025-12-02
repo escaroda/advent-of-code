@@ -4,7 +4,7 @@ from pathlib import Path
 def read_file(path: str) -> str:
     with open(path, encoding="utf-8") as f:
         return f.read()
-    
+
 
 def parse_range(s: str) -> list[int]:
     return list(map(int, s.split("-")))
@@ -23,12 +23,12 @@ def invalid1(i: int) -> bool:
     l = len(digits)
     if l % 2 == 1:
         return False
-    
+
     mid = l // 2
     for i in range(mid):
         if digits[i] != digits[mid + i]:
             return False
-    
+
     return True
 
 
@@ -36,7 +36,7 @@ def part1(data: str) -> None:
     res = 0
     for part in data.split(","):
         r = parse_range(part)
-        for n in range(r[0], r[1]+1):
+        for n in range(r[0], r[1] + 1):
             if invalid1(n):
                 res += n
 
@@ -46,14 +46,12 @@ def part1(data: str) -> None:
 def invalid2(n: int) -> bool:
     l = len(int_split(n))
     for i in range(1, l // 2 + 1):
-        if l % i > 0:
-            continue
+        if l % i == 0:
+            digits = int_split(n, 10**i)
+            unique = set(digits)
+            if len(unique) == 1:
+                return True
 
-        digits = int_split(n, 10**i)
-        unique = set(digits)
-        if len(unique) == 1:
-            return True
-        
     return False
 
 
@@ -61,7 +59,7 @@ def part2(data: str) -> None:
     res = 0
     for part in data.split(","):
         r = parse_range(part)
-        for n in range(r[0], r[1]+1):
+        for n in range(r[0], r[1] + 1):
             if invalid2(n):
                 res += n
 
