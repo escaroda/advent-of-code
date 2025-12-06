@@ -32,19 +32,13 @@ def part2(data: str) -> None:
     res = 0
     lines = data.splitlines()
     digit_length = len(lines) - 1
-    ops_line = lines[-1]
-    op_indices = [i for i, v in enumerate(ops_line) if v != EMPTY_CHAR]
+    ops_raw = lines[-1]
+    edges = [i for i, v in enumerate(ops_raw) if v != EMPTY_CHAR] + [len(ops_raw) + 1]
 
     ops = []
-    for i, op_index in enumerate(op_indices):
-        op = operator.add if ops_line[op_index] == ADD_CHAR else operator.mul
-        ops.append(
-            (
-                op,
-                op_index,
-                op_indices[i + 1] - 1 if i + 1 < len(op_indices) else len(ops_line),
-            )
-        )
+    for i in range(len(edges) - 1):
+        op = operator.add if ops_raw[edges[i]] == ADD_CHAR else operator.mul
+        ops.append((op, edges[i], edges[i + 1] - 1))
 
     for op, start, end in ops:
         digits = []
