@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import List
 
 
 def read_file(path: str) -> str:
@@ -27,7 +26,7 @@ def part1(data: str) -> None:
     print("Part 1:", res)
 
 
-def merge_inclusive(ranges: List[List[int]]) -> List[List[int]]:
+def merge_inclusive(ranges: list[list[int]]) -> list[list[int]]:
     ranges.sort()
     merged = [ranges[0]]
 

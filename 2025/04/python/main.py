@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import List
 
 
 ROLL_CHAR = "@"
@@ -14,7 +13,7 @@ def read_file(path: str) -> str:
         return f.read()
 
 
-def remove_rolls(grid: List[List[str]]) -> tuple[int, List[List[str]]]:
+def remove_rolls(grid: list[list[str]]) -> tuple[int, list[list[str]]]:
     rolls = 0
     grid_updated = [x[:] for x in grid]
     for i in range(len(grid)):
