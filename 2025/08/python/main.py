@@ -9,23 +9,23 @@ N_LARGEST_CIRCUITS = 3
 
 
 class UnionFind:
-    def __init__(self):
-        self.parent = {}
+    def __init__(self) -> None:
+        self.parent: dict[int, int] = {}
 
-    def find(self, x):
+    def find(self, x: int)-> int:
         if x not in self.parent:
             self.parent[x] = x
         if self.parent[x] != x:
             self.parent[x] = self.find(self.parent[x])
         return self.parent[x]
 
-    def union(self, a, b):
+    def union(self, a: int, b: int) -> None:
         ra, rb = self.find(a), self.find(b)
         if ra != rb:
             self.parent[rb] = ra
 
-    def groups(self):
-        result = {}
+    def groups(self) -> list[list[int]]:
+        result: dict[int, list[int]] = {}
         for x in self.parent:
             root = self.find(x)
             result.setdefault(root, []).append(x)
