@@ -14,20 +14,26 @@ def read_file(path: str) -> str:
         return f.read()
 
 
-def part1(data: str) -> None:
+def graph_from_str(data: str) -> dict[str, list[str]]:
     graph: dict[str, list[str]] = {}
     for line in data.strip().splitlines():
         device, line = line.split(": ")
         attachments = line.split(" ")
         graph[device] = attachments
-    
+
+    return graph
+
+
+def part1(data: str) -> None:
+    graph = graph_from_str(data)
     count = 0
+
     def dfs(node: str, visited: set[str]) -> None:
         nonlocal count
         if node == TARGET_NODE:
             count += 1
             return
-        
+
         for n in graph.get(node, []):
             if n not in visited:
                 visited.add(n)
@@ -40,11 +46,7 @@ def part1(data: str) -> None:
 
 
 def part2(data: str) -> None:
-    graph: dict[str, list[str]] = {}
-    for line in data.strip().splitlines():
-        device, line = line.split(": ")
-        attachments = line.split(" ")
-        graph[device] = attachments
+    graph = graph_from_str(data)
 
     @lru_cache(maxsize=None)
     def count_paths(node: str, dac_visited: bool, fft_visited: bool) -> int:
@@ -57,7 +59,7 @@ def part2(data: str) -> None:
         total = 0
         for n in graph.get(node, []):
             total += count_paths(n, dac_visited, fft_visited)
-        
+
         return total
 
     print("Part 2:", count_paths(SVR_NODE, False, False))
