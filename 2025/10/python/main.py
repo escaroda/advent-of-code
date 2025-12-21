@@ -2,7 +2,7 @@ from pathlib import Path
 from itertools import combinations
 from functools import reduce
 from typing import Self
-from pulp import LpProblem, LpStatus, LpMinimize, LpVariable, lpSum, LpInteger, PULP_CBC_CMD
+from pulp import LpProblem, LpStatus, LpVariable, lpSum, LpInteger, PULP_CBC_CMD
 
 
 class Machine:
