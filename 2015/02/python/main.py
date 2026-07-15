@@ -1,40 +1,40 @@
 from pathlib import Path
+from typing import Iterator, Tuple
 
 
-def read_file(path: str) -> str:
-    with open(path, encoding="utf-8") as f:
-        return f.read()
-
-
-def part1(data: str) -> None:
-    total = 0
+def parse(data: str) -> Iterator[Tuple[int, int, int]]:
     for line in data.splitlines():
-        l, w, h = [int(x) for x in line.split("x")]
+        l, w, h = map(int, line.split("x"))
+        yield l, w, h
+
+
+def part1(data: str) -> int:
+    total = 0
+    for l, w, h in parse(data):
         side_a, side_b, side_c = l * w, w * h, h * l
-        area = 2 * side_a+ 2 * side_b + 2 * side_c + min(side_a, side_b, side_c)
+        area = 2 * side_a + 2 * side_b + 2 * side_c + min(side_a, side_b, side_c)
         total += area
 
-    print("Part 1: ", total)
+    return total
 
 
-def part2(data: str) -> None:
+def part2(data: str) -> int:
     length = 0
-    for line in data.splitlines():
-        sides = [int(x) for x in line.split("x")]
-        sides.sort()
-        a, b, c = sides
+    for dims in parse(data):
+        a, b, c = sorted(dims)
         length += 2 * a + 2 * b + a * b * c
-  
-    print("Part 2: ", length)
+
+    return length
 
 
 def main():
     print("--- Day 2: I Was Told There Would Be No Math ---")
     print("https://adventofcode.com/2015/day/2\n")
 
-    data = read_file(Path(__file__).parent.parent / "input.txt")
-    part1(data)
-    part2(data)
+    file_path = Path(__file__).parent.parent / "input.txt"
+    data = file_path.read_text(encoding="utf-8")
+    print(f"Part 1: {part1(data)}")
+    print(f"Part 2: {part2(data)}")
 
 
 if __name__ == "__main__":

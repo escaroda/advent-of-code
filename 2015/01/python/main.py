@@ -1,47 +1,43 @@
 from pathlib import Path
 
 
-def read_file(path: str) -> str:
-    with open(path, encoding="utf-8") as f:
-        return f.read()
-
-
-def part1(data: str) -> None:
+def part1(data: str) -> int:
     floor = 0
 
     for ch in data:
-        if ch == '(':
+        if ch == "(":
             floor += 1
-        elif ch == ')':
+        elif ch == ")":
             floor -= 1
 
-    print("Part 1: ", floor)
+    return floor
 
 
-def part2(data: str) -> None:
+def part2(data: str) -> int:
     floor = 0
     pos = 0
 
     for ch in data:
         pos += 1
-        if ch == '(':
+        if ch == "(":
             floor += 1
-        elif ch == ')':
+        elif ch == ")":
             floor -= 1
 
         if floor == -1:
             break
 
-    print("Part 2: ", pos)
+    return pos
 
 
 def main():
     print("--- Day 1: Not Quite Lisp ---")
     print("https://adventofcode.com/2015/day/1\n")
 
-    data = read_file(Path(__file__).parent.parent / "input.txt")
-    part1(data)
-    part2(data)
+    file_path = Path(__file__).parent.parent / "input.txt"
+    data = file_path.read_text(encoding="utf-8")
+    print(f"Part 1: {part1(data)}")
+    print(f"Part 2: {part2(data)}")
 
 
 if __name__ == "__main__":
