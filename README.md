@@ -4,7 +4,7 @@
 
 https://adventofcode.com/2025
 
-Practicing Python. Next time Zig is for sure.
+Python practice. Next time Zig is for sure.
 
 Runtime: Python 3.12.3
 
@@ -25,3 +25,4 @@ JavaScript madness and coming of age in separate repositories.
 "To the roots" or get my Python mastery back. I also try to avoid premature optimization for readability.
 
 Runtime: Python 3.12.3
+
